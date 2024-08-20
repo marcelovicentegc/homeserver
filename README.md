@@ -35,20 +35,39 @@ The JSON configuration of each dashboard is stored in the [grafana/dashboards](.
 As this project extends to a desktop application to visualize all services available through a single page, abstracting the random IPs assigned to each of them, you can use the following command to spin a Tauri application that points to each of the services through a WebView:
 
 ```bash
-cd frontend && cargo tauri dev
+cd frontend
+pnpm install
+pnpm tauri android init
+
+# For Desktop development, run:
+pnpm tauri dev
+
+# For Android development, run:
+pnpm tauri android dev
 ```
 
 > Muke sure to have all required dependencies installed: cargo, Node.js and system dependencies required by Tauri.
 
-## Helpful commands
+## Debugging
+
+### Moving the server to a different LAN
+
+If moving the server to another LAN, you may need to change the IP address of the Prometheus' targets OR Grafana datasources. You can use the following commands to help you with that:
 
 ```bash
-# What is my machine's IP address within my LAN? Useful for configuring Prometheus' targets.
+# What is my machine's IP address within my LAN?
 ip -c a
+```
 
-# What is the state of the Prometheus' targets? Useful for debugging.
+```bash
+# What is the state of the Prometheus' targets?
 open http://localhost:52441/targets
+```
 
-# Grab a random available port to add a new service.
+### Grabbing a random available port.
+
+You may want to add another service to the stack. You can use the following command to get a random available port to use:
+
+```bash
 python3 ./scripts/get_random_available_port.py
 ```
