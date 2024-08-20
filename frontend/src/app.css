@@ -1,0 +1,35 @@
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.navbar-separator {
+  height: 20px;
+  border-left: 1px solid #e5e5e5;
+  margin: 10px;
+}
+
+.theme-selection {
+  margin: 0;
+}
+
+.actions-label {
+  margin-right: 10px;
+}

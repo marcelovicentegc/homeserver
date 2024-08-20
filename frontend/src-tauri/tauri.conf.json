@@ -1,14 +1,23 @@
 {
   "productName": "frontend",
-  "version": "0.0.0",
-  "identifier": "com.tauri.dev",
+  "version": "0.1.0",
+  "identifier": "frontend",
   "build": {
-    "frontendDist": "../src"
+    "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist"
   },
   "app": {
-    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "frontend",
+        "width": 1600,
+        "height": 1200
+      }
+    ],
     "security": {
-      "csp": "default-src 'self'; connect-src ipc: http://ipc.localhost"
+      "csp": null
     }
   },
   "bundle": {
