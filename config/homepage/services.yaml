@@ -1,0 +1,10 @@
+- Observability:
+    - Grafana:
+        href: http://localhost:32911/
+    - Prometheus:
+        href: http://localhost:52441/
+    - Portainer:
+        href: http://localhost:37017/
+- Code:
+    - Github:
+        href: https://github.com/marcelovicentegc/sys-o11y

@@ -1,11 +1,14 @@
-# sys-o11y
+# sys-o11y <!-- omit in toc -->
 
 This repository contains a set of industry standard services to monitor the system's health and performance. It is a good source for those who:
 1. Are looking for a starting point to build their own monitoring stack.
 2. Want to learn how to use Grafana, Prometheus and containerization.
-3. Want to learn Rust.
-4. Want to learn about micro-frontends.
-5. Want to learn how to build multi-platform applications.
+
+- [Getting started](#getting-started)
+- [Configuration](#configuration)
+- [Debugging](#debugging)
+  - [Moving the server to a different LAN](#moving-the-server-to-a-different-lan)
+  - [Grabbing a random available port](#grabbing-a-random-available-port)
 
 ## Getting started
 
@@ -15,13 +18,14 @@ Once you've cloned the repository, you can start the services (on the background
 docker compose up -d
 ```
 
-| Service       | URL                     | Description               |
-| ------------- | ----------------------- | ------------------------- |
-| Grafana       | http://localhost:32911/ | Visualize the data        |
-| Prometheus    | http://localhost:52441/ | Collect and store metrics |
-| Portainer     | http://localhost:37017/ | Manage Docker containers  |
-| Node Exporter | -                       | Monitor the host machine  |
-| cAdvisor      | -                       | Monitor Docker containers |
+| Service       | URL                     | Description                                                  |
+| ------------- | ----------------------- | ------------------------------------------------------------ |
+| Homepage      | http://localhost:3000/  | Access the desktop app with shortcuts for all services below |
+| Grafana       | http://localhost:32911/ | Visualize the data                                           |
+| Prometheus    | http://localhost:52441/ | Collect and store metrics                                    |
+| Portainer     | http://localhost:37017/ | Manage Docker containers                                     |
+| Node Exporter | -                       | Monitor the host machine                                     |
+| cAdvisor      | -                       | Monitor Docker containers                                    |
 
 
 ## Configuration
@@ -29,24 +33,6 @@ docker compose up -d
 The services are configured to monitor the host machine, including the Docker containers and Prometheus itself. You have to manually configure Prometheus as a data source in Grafana and check the targets in Prometheus to make sure everything is working as expected.
 
 The JSON configuration of each dashboard is stored in the [grafana/dashboards](./grafana/dashboards/) directory. You can import them in Grafana to visualize the data.
-
-## Building the desktop application
-
-As this project extends to a desktop application to visualize all services available through a single page, abstracting the random IPs assigned to each of them, you can use the following command to spin a Tauri application that points to each of the services through a WebView:
-
-```bash
-cd frontend
-pnpm install
-pnpm tauri android init
-
-# For Desktop development, run:
-pnpm tauri dev
-
-# For Android development, run:
-pnpm tauri android dev
-```
-
-> Muke sure to have all required dependencies installed: cargo, Node.js and system dependencies required by Tauri.
 
 ## Debugging
 
@@ -64,7 +50,7 @@ ip -c a
 open http://localhost:52441/targets
 ```
 
-### Grabbing a random available port.
+### Grabbing a random available port
 
 You may want to add another service to the stack. You can use the following command to get a random available port to use:
 
