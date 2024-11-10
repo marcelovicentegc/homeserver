@@ -5,6 +5,12 @@
         href: http://localhost:52441/
     - Portainer:
         href: http://localhost:37017/
+    - Dozzle:
+        href: http://localhost:8833/
+    - Adguard:
+        href: http://localhost:3333/
+    - SigNoz:
+        href: http://localhost:3301/
 - Code:
     - Github:
-        href: https://github.com/marcelovicentegc/sys-o11y
+        href: https://github.com/marcelovicentegc/homeserver

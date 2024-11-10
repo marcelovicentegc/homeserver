@@ -1,0 +1,3 @@
+[submodule "signoz"]
+	path = signoz
+	url = git@github.com:SigNoz/signoz.git

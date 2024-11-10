@@ -1,14 +1,13 @@
-# sys-o11y <!-- omit in toc -->
+# homeserver <!-- omit in toc -->
 
-This repository contains a set of industry standard services to monitor the system's health and performance. It is a good source for those who:
-1. Are looking for a starting point to build their own monitoring stack.
-2. Want to learn how to use Grafana, Prometheus and containerization.
+This repository contains the code that runs on my homeserver.
 
 - [Getting started](#getting-started)
 - [Configuration](#configuration)
-- [Debugging](#debugging)
+- [Operating homeserver](#operating-homeserver)
   - [Moving the server to a different LAN](#moving-the-server-to-a-different-lan)
   - [Grabbing a random available port](#grabbing-a-random-available-port)
+  - [Checking which application is running on a specific port](#checking-which-application-is-running-on-a-specific-port)
 
 ## Getting started
 
@@ -18,15 +17,16 @@ Once you've cloned the repository, you can start the services (on the background
 docker compose up -d
 ```
 
-| Service       | URL                     | Description                                                  |
-| ------------- | ----------------------- | ------------------------------------------------------------ |
-| Homepage      | http://localhost:3000/  | Access the desktop app with shortcuts for all services below |
-| Grafana       | http://localhost:32911/ | Visualize the data                                           |
-| Prometheus    | http://localhost:52441/ | Collect and store metrics                                    |
-| Portainer     | http://localhost:37017/ | Manage Docker containers                                     |
-| Node Exporter | -                       | Monitor the host machine                                     |
-| cAdvisor      | -                       | Monitor Docker containers                                    |
-
+| Service       | URL                    | Description                                                  |
+| ------------- | ---------------------- | ------------------------------------------------------------ |
+| Homepage      | http://localhost:3000/ | Access the desktop app with shortcuts for all services below |
+| Grafana       | -                      | Visualize the data                                           |
+| Prometheus    | -                      | Collect and store metrics                                    |
+| Portainer     | -                      | Manage Docker containers                                     |
+| Node Exporter | -                      | Monitor the host machine                                     |
+| cAdvisor      | -                      | Monitor Docker containers                                    |
+| Dozzle        | -                      | Monitor Docker logs                                          |
+| AdguardHome   | -                      | DNS and DHCP Server                                          |
 
 ## Configuration
 
@@ -34,7 +34,9 @@ The services are configured to monitor the host machine, including the Docker co
 
 The JSON configuration of each dashboard is stored in the [grafana/dashboards](./grafana/dashboards/) directory. You can import them in Grafana to visualize the data.
 
-## Debugging
+## Operating homeserver
+
+Below are some useful commands to help you operate (debug, fix, add new features, etc.) the homeserver.
 
 ### Moving the server to a different LAN
 
@@ -56,4 +58,12 @@ You may want to add another service to the stack. You can use the following comm
 
 ```bash
 python3 ./scripts/get_random_available_port.py
+```
+
+### Checking which application is running on a specific port
+
+You can use the following command to check which application is running on a specific port:
+
+```bash
+lsof -i :3000
 ```
