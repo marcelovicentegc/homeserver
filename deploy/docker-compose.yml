@@ -1,6 +1,4 @@
 ---
-include:
-  - ./signoz/deploy/docker/clickhouse-setup/docker-compose.yaml
 volumes:
   grafana-data:
     driver: local
@@ -11,7 +9,7 @@ volumes:
 services:
   grafana:
     image: docker.io/grafana/grafana-oss:11.1.3
-    container_name: grafana_local
+    container_name: grafana-homeserver
     ports:
       - 32911:3000
     volumes:
@@ -19,7 +17,7 @@ services:
     restart: unless-stopped
   prometheus:
     image: docker.io/prom/prometheus:v2.53.1
-    container_name: prometheus_local
+    container_name: prometheus-homeserver
     ports:
       - 52441:9090
     command: "--config.file=/etc/prometheus/prometheus.yaml"
@@ -28,7 +26,7 @@ services:
       - prometheus-data:/prometheus
     restart: unless-stopped
   portainer:
-    container_name: portainer_local
+    container_name: portainer-homeserver
     image: docker.io/portainer/portainer-ce:latest
     ports:
       - 37017:9000
@@ -40,27 +38,16 @@ services:
     restart: unless-stopped
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
-    container_name: node_exporter_local
+    container_name: node-exporter-homeserver
     command:
       - "--path.rootfs=/host"
     pid: host
     restart: unless-stopped
     volumes:
       - "/:/host:ro,rslave"
-  cadvisor:
-    image: gcr.io/cadvisor/cadvisor:latest
-    container_name: cadvisor_local
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:ro
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
-      - /dev/disk/:/dev/disk:ro
-    devices:
-      - /dev/kmsg
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
-    container_name: homepage_local
+    container_name: homepage-homeserver
     ports:
       - 3000:3000
     volumes:
@@ -69,14 +56,14 @@ services:
     restart: unless-stopped
   dozzle:
     image: amir20/dozzle:latest
-    container_name: dozzle_local
+    container_name: dozzle-homeserver
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - 8833:8080
   adguardhome:
     image: adguard/adguardhome
-    container_name: adguardhome_local
+    container_name: adguardhome-homeserver
     ports:
       # DNS Server enabled
       # DNS (https://www.speedguide.net/port.php?port=53)

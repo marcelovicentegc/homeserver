@@ -24,7 +24,6 @@ docker compose up -d
 | Prometheus    | -                      | Collect and store metrics                                    |
 | Portainer     | -                      | Manage Docker containers                                     |
 | Node Exporter | -                      | Monitor the host machine                                     |
-| cAdvisor      | -                      | Monitor Docker containers                                    |
 | Dozzle        | -                      | Monitor Docker logs                                          |
 | AdguardHome   | -                      | DNS and DHCP Server                                          |
 
