@@ -1,4 +1,3 @@
-import os
 import subprocess
 from get_login_info import host, user
 

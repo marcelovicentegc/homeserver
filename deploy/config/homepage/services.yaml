@@ -9,8 +9,6 @@
         href: http://localhost:8833/
     - Adguard:
         href: http://localhost:3333/
-    - SigNoz:
-        href: http://localhost:3301/
 - Code:
     - Github:
         href: https://github.com/marcelovicentegc/homeserver

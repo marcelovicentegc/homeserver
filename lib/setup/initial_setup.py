@@ -1,6 +1,6 @@
 import os
 import subprocess
-from get_login_info import host, user
+from deploy.get_login_info import host, user
 
 # Define the remote machine details
 remote_path = f"/home/{user}/Documents/homeserver"

@@ -25,3 +25,6 @@ dist-ssr
 
 # AdGuard Home
 config/adguard
+
+# Python    
+__pycache__
