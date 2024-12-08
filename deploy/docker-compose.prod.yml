@@ -1,0 +1,14 @@
+---
+services:
+  # https://github.com/AdguardTeam/AdGuardHome/issues/5790
+  adguardhome:
+    ports:
+      # DNS Server enabled
+      # DNS (https://www.speedguide.net/port.php?port=53)
+      - 53:53/tcp
+      - 53:53/udp
+      # DNS over QUIC/TLS (https://www.speedguide.net/port.php?port=853)
+      - 853:853/tcp
+    volumes:
+      - ./config/adguard/work:/opt/adguardhome/work
+      - ./config/adguard/conf:/opt/adguardhome/conf

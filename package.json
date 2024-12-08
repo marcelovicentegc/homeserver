@@ -2,11 +2,11 @@
   "name": "homeserver",
   "version": "0.1.0",
   "scripts": {
-    "init": "python3 scripts/init.py",
-    "deploy": "python3 scripts/deploy.py",
-    "update": "python3 scripts/update.py",
+    "init": "python3 lib/setup/initial_setup.py",
+    "dev": "python3 lib/dev/check_env.py && docker compose -f docker-compose.base.yml up",
+    "deploy": "python3 lib/deploy/spin_services.py",
+    "update": "python3 lib/deploy/update.py",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "Marcelo Cardoso"
 }

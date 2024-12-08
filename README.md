@@ -1,28 +1,43 @@
 # homeserver <!-- omit in toc -->
 
-This repository contains the code that runs on my homeserver.
+This repository contains the code that runs on my homeserver. 
 
 - [Getting started](#getting-started)
-- [Configuration](#configuration)
+  - [Requirements](#requirements)
+    - [Hardware](#hardware)
+    - [Software](#software)
+  - [Development instructions](#development-instructions)
+  - [Production instructions](#production-instructions)
 
 ## Getting started
 
-Once you've cloned the repository, you can start the services with the following command:
+### Requirements
+
+Before you start, make sure you have the following hardware and software installed on your development and production machines (this project assumes that your development machine is not your production machine).
+
+#### Hardware
+
+You'll need at least 4GB of RAM and 2 CPU cores to run all services, as well as a configurable router. This code is running on a Raspberry Pi 5 with 8GB of RAM as the host machine attached to a TP Link ER706W.
+
+#### Software
+
+You'll need Docker, Docker Compose and Python installed on your development and production machines, and Node installed on your development machine just for the sake of simplicity for running some scripts that enhance DX.
+
+### Development instructions
+
+Once you've cloned the repository, you can start the services on your local machine with the following command:
 
 ```bash
-docker compose up -d
+npm run dev
 ```
 
-| Service       | URL                    | Description                                                  |
-| ------------- | ---------------------- | ------------------------------------------------------------ |
-| Homepage      | http://localhost:3000/ | Access the desktop app with shortcuts for all services below |
-| Grafana       | -                      | Visualize the data                                           |
-| Prometheus    | -                      | Collect and store metrics                                    |
-| Portainer     | -                      | Manage Docker containers                                     |
-| Node Exporter | -                      | Monitor the host machine                                     |
-| Dozzle        | -                      | Monitor Docker logs                                          |
-| AdguardHome   | -                      | DNS and DHCP Server                                          |
+### Production instructions
 
-## Configuration
+To deploy the services to your production machine, you'll need to have SSH access to it.
 
-The services are configured to monitor the host machine and Prometheus itself. You have to manually configure Prometheus as a data source in Grafana and check the targets in Prometheus to make sure everything is working as expected.
+This project expects two environment variables to be set on your development machine in order to operate your production machine, make sure to set them on your user profile (.bashrc, .zshrc, etc):
+
+```bash
+export HS_USER=your_user
+export HS_HOST=your_host
+```

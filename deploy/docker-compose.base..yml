@@ -67,10 +67,10 @@ services:
     ports:
       # DNS Server enabled
       # DNS (https://www.speedguide.net/port.php?port=53)
-      # - 53:53/tcp
-      # - 53:53/udp
+      - 53:53/tcp
+      - 53:53/udp
       # DNS over QUIC/TLS (https://www.speedguide.net/port.php?port=853)
-      # - 853:853/tcp
+      - 853:853/tcp
 
       # Web Interface enabled
       - 3333:3000/tcp
